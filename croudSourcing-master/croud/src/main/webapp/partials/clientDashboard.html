@@ -1,0 +1,156 @@
+<div class="container">
+	<div ng-if="!showTask">
+		<h1 class="well">
+			<span>Your Dashboard</span><span
+				style="position: absolute; right: 150px;"><a
+				href="#createTask">Go To Create Task</a></span>
+		</h1>
+		<h2>Task History</h2>
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th>S.No</th>
+					<th>Title</th>
+					<th>Description</th>
+					<th>Selected Category</th>
+					<th>Location</th>
+					<th>Payment</th>
+					<th>Task Status</th>
+					<th>Worker Status</th>
+					<th>Feedback</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="taskHistory in taskHistoryLst">
+					<td>{{$index+1}}</td>
+					<td ng-if='taskHistory.taskStatus!="CLOSED"'><button type="button" class="btn btn-link"
+							ng-click="editTask(taskHistory)">{{taskHistory.title}}</button></td>
+					<td ng-if='taskHistory.taskStatus=="CLOSED"'>{{taskHistory.title}}</td>
+					<td>{{taskHistory.description}}</td>
+					<td>{{taskHistory.categoryCode}}</td>
+					<td>{{taskHistory.location}}</td>
+					<td>{{taskHistory.taskPayment}}</td>
+					<td>{{taskHistory.taskStatus}}</td>
+					<td>{{taskHistory.workerStatus}}</td>
+					<td>{{taskHistory.taskFeedback}}</td>
+				</tr>
+			</tbody>
+		</table>
+
+	</div>
+	<div class="col-lg-12 well" ng-if="showTask">
+		<div class="row">
+			<form>
+				<h2>Edit Task Initiated</h2>
+				<button type="button" class="btn btn-link" ng-click="showTaskLst()">Back
+					To Task History</button>
+				<div class="col-sm-12">
+					<div class="row">
+						<div class="col-sm-12 form-group">
+							<label>Title</label> <input type="text"
+								placeholder="Enter Title Here.." class="form-control"
+								ng-model="initiatedtask.title" ng-disabled="true"></input>
+						</div>
+					</div>
+					<div class="form-group">
+						<label>Description</label>
+						<textarea placeholder="Enter Description Here.." rows="3"
+							class="form-control" ng-model="initiatedtask.description"
+							ng-disabled="true"></textarea>
+					</div>
+					<div class="row">
+						<div class="col-sm-12 form-group">
+							<label>Category Selected</label><input type="text"
+								class="form-control" ng-model="initiatedtask.categoryCode"
+								ng-disabled="true"></input>
+
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-12 form-group">
+							<label>Location (Optional)</label> <input type="text"
+								placeholder="Enter Location Here.." class="form-control"
+								ng-model="initiatedtask.location" ng-disabled="true"></input>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-4 form-group">
+							<label>Time Limit</label> <input type="text"
+								placeholder="Enter Time Limit(hrs/days) Here.."
+								class="form-control" ng-model="initiatedtask.timeLimitHours"
+								ng-disabled="true"></input>
+						</div>
+						<div class="col-sm-4 form-group">
+							<label>Budget</label> <input type="text"
+								placeholder="Enter Budget(CAD) Here.." class="form-control"
+								ng-model="initiatedtask.budget" ng-disabled="true"></input>
+						</div>
+						<div class="col-sm-4 form-group">
+							<label>Max Workers</label> <input type="text"
+								placeholder="Enter Max No. Of Workers Needed Here.."
+								class="form-control" ng-model="initiatedtask.maxWorker"
+								ng-disabled="true"></input>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-12 form-group">
+							<label>Contact Details</label> <input type="text"
+								placeholder="Enter Contact# Here.." class="form-control"
+								ng-model="initiatedtask.contactDetails" ng-disabled="true"></input>
+						</div>
+					</div>
+					<!-- 	<div class="row">
+						<div class="col-sm-12 form-group">
+							<label>Image</label> <img class="img-responsive"
+								src="img_chania.jpg" alt="Chania">
+						</div>
+					</div> -->
+				<!-- 	<div class="row">
+						<div class="col-sm-12 form-group">
+							<label>Worker Details</label> <input type="text"
+								placeholder="Enter Contact# Here.." class="form-control"
+								ng-model="initiatedtask.workerId"></input>
+						</div>
+					</div> -->
+					<div class="row" ng-if="initiatedtask.workerId!=0">
+						<div class="col-sm-12 form-group">
+							<label>Task Status</label>
+							<!--  <select
+								data-ng-model="initiatedtask.dropSelected"
+								data-ng-options="status in statusList"
+								>
+							</select> 
+							 -->
+							<select name="repeatSelect" id="repeatSelect"
+								ng-model="initiatedtask.dropSelected"
+								ng-change="dropdownChange(initiatedtask.dropSelected)">
+								<option ng-repeat="status in statusList">{{status}}</option>
+							</select>
+						</div>
+					</div>
+					<div class="row" ng-show="finishFlag">
+						<div class="col-sm-12 form-group">
+							<label>Pay Money</label> <input type="text"
+								placeholder="Enter Amount Here.." class="form-control"
+								ng-model="initiatedtask.taskPayment"></input>
+						</div>
+					</div>
+					<div class="row" ng-if="finishFlag">
+						<div class="col-sm-12 form-group">
+							<label>Feedback</label> <select name="repeatSelectFeedback"
+								id="repeatSelectFeedback" ng-model="initiatedtask.taskFeedback">
+								<!-- <option>Select Work Feedback</option> -->
+								<option ng-repeat="feedback in feedbackList">{{feedback}}</option>
+							</select>
+
+
+						</div>
+					</div>
+					<button type="button" ng-if="finishFlag"
+						class="btn btn-lg btn-info" ng-click="transferMoney()">Transfer
+						Money & Feedback</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

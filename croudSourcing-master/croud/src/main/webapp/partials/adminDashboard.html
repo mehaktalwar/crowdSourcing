@@ -1,0 +1,72 @@
+
+
+<div class="container" ng-controller="adminDashboardCtrl">
+
+	<h1 class="well">Admin Dashboard</h1>
+
+	<div class="col-lg-12 well">
+		<h3 class="well">Create Category</h3>
+		<div class="row">
+			<form name="myForm" required>
+				<div class="col-sm-12">
+					<div class="row">
+						<div class="col-sm-12 form-group">
+							<label>Category Name</label> <input type="text" name="category"
+								required ng-model="category.categoryName"
+								placeholder="Enter Category Name Here.." class="form-control">
+
+							<span style="color: Red"
+								ng-show="myForm.category.$dirty && myForm.category.$invalid">
+								<span ng-show="myForm.category.$error.required">Category
+									Name is required.</span>
+							</span>
+						</div>
+					</div>
+					<div class="form-group">
+						<label>Category Description</label>
+						<textarea ng-model="category.categoryDesc"
+							placeholder="Enter Category Description Here.." rows="3" required
+							name="desc" class="form-control"></textarea>
+
+						<span style="color: Red"
+							ng-show="myForm.desc.$dirty && myForm.desc.$invalid"> <span
+							ng-show="myForm.worker.$error.required">Description is
+								required.</span>
+						</span>
+					</div>
+					<button type="button" ng-click="sendPost()"
+						ng-disabled="!myForm.$valid" class="btn btn-lg btn-info">Create
+						New Category</button>
+				</div>
+			</form>
+		</div>
+	</div>
+	<div class="col-lg-12 well">
+		<h1 class="well">Categories List</h1>
+		<div class="row">
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th>S.No</th>
+						<th>Category</th>
+						<th>Description</th>
+						<th>Delete Category</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="category in categoryLst">
+						<td>{{$index+1}}</td>
+						<td>{{category.categoryName}}</td>
+						<td>{{category.categoryDesc}}</td>
+						<td><button type="button" class="btn btn-link"
+								ng-click="deleteCategory(category.categorypk)">Delete</button></td>
+
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
+
+

@@ -1,0 +1,102 @@
+
+<div class="container" ng-controller="workerCtrl">
+	<h1 class="well">Worker Sign Up</h1>
+	<div class="col-lg-12 well">
+		<div class="row">
+			<form name="myForm" required>
+				<div class="col-sm-12">
+					<div class="row">
+						<div class="col-sm-12 form-group">
+							<label>Name*</label> <input type="text" required name="workerName"
+								placeholder="Enter Name Here.." class="form-control"
+								ng-model="worker.workerName"> <span style="color: Red"
+								ng-show="myForm.workerName.$dirty && myForm.workerName.$invalid">
+								<span ng-show="myForm.workerName.$error.required">Name
+									is required.</span> 
+							</span>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-12 form-group">
+							<label>Email *</label> <input type="email" required name="workerEmail" ng-model-options="{ updateOn: 'blur' }" ng-change='validateUsername(worker.workerEmail)'
+								placeholder="Enter Password Here.." class="form-control"
+								ng-model="worker.workerEmail"><span style="color: Red"
+								ng-show="myForm.workerEmail.$dirty && myForm.workerEmail.$invalid">
+								<span ng-show="myForm.workerEmail.$error.required">Email
+									is required.</span> <span
+								ng-show="myForm.workerEmail.$error.email">Invalid
+									email address.</span><span
+								ng-show="myForm.workerEmail.$error.sameName">Username already exist in system.</span>
+							</span>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-12 form-group">
+							<label>Password</label> <input type="password" required name="workerPassword" ng-maxlength="12" ng-minlength="5"
+								placeholder="Enter Password Here.." class="form-control"
+								ng-model="worker.workerPassword"><span style="color: Red"
+								ng-show="myForm.workerPassword.$dirty && myForm.workerPassword.$invalid">
+								<span ng-show="myForm.workerPassword.$error.required">Invalid
+									Password.</span> <span
+								ng-show="myForm.workerPassword.$error.minlength">Password
+									should be more than 4 keywords.</span> <span
+								ng-show="myForm.workerPassword.$error.maxlength">Password
+									should be less than 12 keywords.</span></span>
+						</div>
+					</div>
+					<div class="form-group">
+						<label>Address</label>
+						<textarea placeholder="Enter Address Here.." rows="3" required name="workeraddress"
+							class="form-control" ng-model="worker.workeraddress"></textarea>
+							<span style="color: Red"
+								ng-show="myForm.worker.workeraddress.$dirty && myForm.worker.workeraddress.$invalid">
+								<span ng-show="myForm.worker.workeraddress.$error.required">Address
+									is required.</span> 
+							</span>
+							
+					</div>
+					<div class="row">
+						<div class="col-sm-6 form-group">
+							<label>Expertise Area</label> <!-- <select name="singleSelect"
+								ng-model="worker.expertiseArea">
+								<option value="Driver">Driver</option>
+								<option value="Childcare">Childcare</option>
+							</select> -->
+							
+								<select name="categoryCode" id="repeatSelect"
+									ng-model="worker.expertiseArea">
+									<option ng-repeat="status in categoryLst">{{status.categoryName}}</option>
+								</select>
+						</div>
+						<div class="col-sm-6 form-group">
+							<label>Level of Expertise</label> <select name="singleSelect"
+								ng-model="worker.levelExpertise">
+								<option value="Beginner">Beginner</option>
+								<option value="Intermediate">Intermediate</option>
+								<option value="Advanced">Advanced</option>
+								<option value="Expert">Expert</option>
+							</select>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-12 form-group">
+							<label>Charges (per hour)</label> <input type="number"
+								placeholder="Enter Charges Per Hour Here.." class="form-control"
+								ng-model="worker.servicefee">
+								
+						
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-12 form-group">
+							<label>Availability</label> <input type="checkbox"
+								ng-model="worker.availabilityFlag">
+						</div>
+					</div>
+					<button type="button" class="btn btn-lg btn-info" ng-disabled="!myForm.$valid"
+						ng-click="createWorker()">Sign Up</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

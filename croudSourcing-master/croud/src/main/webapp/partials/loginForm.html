@@ -1,0 +1,56 @@
+
+
+<div class="container" ng-controller="loginCtrl">
+	<h1 class="well">Log In</h1>
+	<div class="col-lg-12 well">
+		<div class="row">
+
+			<form name="myForm" required>
+				<div class="col-sm-12">
+					<div class="row">
+						<div class="col-sm-4 form-group">
+							<label>Email</label> <input type="email" name="username"
+								placeholder="Enter Email Here.." class="form-control"
+								ng-model="login.username" required /> <span style="color: Red"
+								ng-show="myForm.username.$dirty && myForm.username.$invalid">
+								<span ng-show="myForm.username.$error.required">Email is
+									required.</span> <span ng-show="myForm.username.$error.email">Invalid
+									email address.</span>
+							</span>
+
+						</div>
+						<!-- for error validation -->
+
+					</div>
+					<div class="row">
+						<div class="col-sm-4 form-group">
+							<label>Password</label> <input type="password" name="password"
+								ng-maxlength="12" ng-minlength="5" required
+								placeholder="Enter Password Here.." class="form-control"
+								ng-model="login.password"> <span style="color: Red"
+								ng-show="myForm.password.$dirty && myForm.password.$invalid">
+								<span ng-show="myForm.password.$error.required">Invalid
+									Password.</span> <span ng-show="myForm.password.$error.minlength">Password
+									should be more than 4 keywords.</span> <span
+								ng-show="myForm.password.$error.maxlength">Password
+									should be less than 12 keywords.</span>
+							</span>
+						</div>
+
+					<!-- 	<div class="col-sm-4 form-group"></div>
+						<div class="col-sm-4 form-group">
+							<a href="#" class="btn btn-info" role="button">Sign Up as
+								Worker</a>
+						</div> -->
+					</div>
+					<button type="button" class="btn btn-lg btn-info"
+						ng-disabled="!myForm.$valid" ng-click="verifyUser()">Log
+						In</button>
+				</div>
+
+			</form>
+
+
+		</div>
+	</div>
+</div>

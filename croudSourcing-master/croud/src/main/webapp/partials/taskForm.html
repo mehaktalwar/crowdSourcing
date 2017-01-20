@@ -1,0 +1,163 @@
+
+<div ng-controller="taskCtrl">
+
+	<div class="container">
+		<h1 class="well">
+			<span>Create Task</span><span
+				style="position: absolute; right: 150px;"><a
+				href="#clientDashboard">Go To Dashboard</a></span>
+		</h1>
+		<div class="col-lg-12 well">
+			<div class="row">
+				<form name="myForm" required>
+					<div class="col-sm-12">
+						<div class="row">
+							<div class="col-sm-12 form-group">
+								<label>Title*</label> <input type="text" required name="title"
+									placeholder="Enter Title Here.." class="form-control"
+									ng-model="task.title"> <span style="color: Red"
+									ng-show="myForm.title.$dirty && myForm.title.$invalid">
+									<span ng-show="myForm.title.$error.required">Title is
+										required.</span>
+								</span>
+							</div>
+						</div>
+						<div class="form-group">
+							<label>Description*</label>
+							<textarea placeholder="Enter Description Here.." rows="3"
+								name="description" required class="form-control"
+								ng-model="task.description"></textarea>
+
+							<span style="color: Red"
+								ng-show="myForm.description.$dirty && myForm.description.$invalid">
+								<span ng-show="myForm.description.$error.required">Description
+									is required.</span>
+							</span>
+
+						</div>
+						<div class="row">
+							<div class="col-sm-12 form-group">
+								<label>Category</label>
+								<!-- 	<select name="singleSelect" required
+									name="categoryCode" ng-model="task.categoryCode">
+									<option value="Driver">Driver</option>
+									<option value="Childcare">Childcare</option>
+								</select> -->
+
+								<select name="categoryCode" id="repeatSelect"
+									ng-model="task.categoryCode">
+									<option ng-repeat="status in categoryLst">{{status.categoryName}}</option>
+								</select>
+
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-12 form-group">
+								<label>Location (Optional)</label> <input type="text"
+									name="location" placeholder="Enter Location Here.."
+									class="form-control" ng-model="task.location">
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-4 form-group">
+								<label>Time Limit(Days)</label> <input type="number"
+									name="timeLimitHours"
+									placeholder="Enter Time Limit(days) Here.."
+									class="form-control" ng-model="task.timeLimitHours">
+							</div>
+							<div class="col-sm-4 form-group">
+								<label>Budget$</label> <input type="text" name="budget"
+									placeholder="Enter Budget(CAD) Here.." class="form-control"
+									ng-model="task.budget">
+							</div>
+							<div class="col-sm-4 form-group">
+								<label>Max Workers</label> <input type="number" name="maxWorker"
+									placeholder="Enter Max No. Of Workers Needed Here.."
+									class="form-control" ng-model="task.maxWorker">
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-12 form-group">
+								<label>Contact Details*</label> <input type="number"
+									ng-maxlength="10" ng-minlength="10" name="contactDetails"
+									placeholder="Enter Contact# Here.." required
+									class="form-control" ng-model="task.contactDetails"> <span
+									style="color: Red"
+									ng-show="myForm.contactDetails.$dirty && myForm.contactDetails.$invalid">
+									<span ng-show="myForm.contactDetails.$error.required">Contact
+										Required </span> <span
+									ng-show="myForm.contactDetails.$error.minlength">10
+										digits required.</span> <span
+									ng-show="myForm.contactDetails.$error.maxlength">10
+										digits required.</span>
+								</span>
+							</div>
+						</div>
+
+						<!-- 	<div class="row">
+							<div class="col-sm-12 form-group">
+								<span class="btn btn-default btn-file">Browse Image<input
+									type="file">
+								</span>
+							</div>
+						</div> -->
+						<button type="button" class="btn btn-lg btn-info"
+							ng-disabled="!myForm.$valid" ng-click="createTask()">Create
+							New Task</button>
+
+					</div>
+				</form>
+			</div>
+		</div>
+
+
+
+		<button type="button" class="btn btn-lg btn-info"
+			ng-click="workerDetails()">Search for Available Recommendation For Your
+			Task</button>
+
+		<div class="panel-group" ng-if="showWorkerDetails">
+			<h2>Available Recommendation For Your Task</h2>
+			<div class="panel panel-primary"
+				ng-repeat="worker in workerTasklst | orderBy:'-crediblity'">
+
+				<div class="panel-heading">
+					<div class="col-sm-6 form-group">
+						<label>{{worker.workerName}}</label>
+					</div>
+					<label>Credibility:</label> <label>{{worker.crediblity/10}}</label>
+				</div>
+
+				<div class="panel-body">
+					<div class="col-sm-12">
+						<div class="col-sm-6 form-group">
+							<label>Address:</label> <label style="font-size: small;">{{worker.workeraddress}}
+								street</label>
+						</div>
+						<div class="col-sm-6 form-group">
+							<label>Email:</label> <label style="font-size: small;">{{worker.workerEmail}}</label>
+						</div>
+						<div class="col-sm-6 form-group">
+							<label>Service Fee:</label> <label style="font-size: small;">{{worker.servicefee}}</label>
+						</div>
+						<div class="col-sm-6 form-group">
+							<label>Experience:</label> <label style="font-size: small;">{{worker.experince}}</label>
+						</div>
+						<button type="button" class="btn btn-primary btn-xs"
+							ng-click="sendReqToWorker(worker.pkWorker)">Choose</button>
+
+					</div>
+				</div>
+			</div>
+			<div ng-hide="workerTasklst.length">Currently,No Recommendation
+				is available for your task</div>
+
+
+		</div>
+	</div>
+
+</div>
+
+
+
+

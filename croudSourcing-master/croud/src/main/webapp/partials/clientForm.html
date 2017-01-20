@@ -1,0 +1,70 @@
+<div class="container" ng-controller="clientCtrl">
+	<h1 class="well">Client Sign Up</h1>
+	<div class="col-lg-12 well">
+		<div class="row">
+			<form name="myForm" required>
+				<div class="col-sm-12">
+					<div class="row">
+						<div class="col-sm-12 form-group">
+							<label>Name*</label> <input type="text" name="workerName" required
+								placeholder="Enter Name Here.." class="form-control"
+								ng-model="client.clientName"> <span style="color: Red"
+								ng-show="myForm.workerName.$dirty && myForm.workerName.$invalid">
+								<span ng-show="myForm.workerName.$error.required">Name is
+									required.</span>
+							</span>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-12 form-group">
+							<label>Email*</label> <input type="email" required  ng-model-options="{ updateOn: 'blur' }" ng-change='validateUsername(client.clientEmail)'
+								placeholder="Enter Email Here.." class="form-control"
+								ng-model="client.clientEmail" name="clientEmail"> <span
+								style="color: Red"
+								ng-show="myForm.clientEmail.$dirty && myForm.clientEmail.$invalid">
+								<span ng-show="myForm.clientEmail.$error.required">Email
+									is required.</span> <span ng-show="myForm.clientEmail.$error.email">Invalid
+									email address.</span><span
+								ng-show="myForm.clientEmail.$error.sameName">Username already exist in system.</span>
+							</span>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-12 form-group">
+							<label>Password*</label> <input type="password" ng-maxlength="12" ng-minlength="5"
+								placeholder="Enter Password Here.." class="form-control"
+								ng-model="client.password" required name="password"> <span
+								style="color: Red"
+								ng-show="myForm.password.$dirty && myForm.password.$invalid">
+								<span ng-show="myForm.password.$error.required">Invalid
+									Password.</span> <span ng-show="myForm.password.$error.minlength">Password
+									should be more than 4 keywords.</span> <span
+								ng-show="myForm.password.$error.maxlength">Password
+									should be less than 12 keywords.</span>
+							</span>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-12 form-group">
+							<label>Payment Method</label> <select name="singleSelect"
+								ng-model="client.paymentMethod">
+								<option value="Visa">Visa</option>
+								<option value="Master Card">Master Card</option>
+								<option value="PayPal">PayPal</option>
+							</select>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-12 form-group">
+							<label>Payment Details for security*</label> <input type="text"
+								placeholder="Enter Card/Account# Here.." class="form-control"
+								ng-model="client.paymentInfo" name="paymentInfo" required>
+						</div>
+					</div>
+					<button type="button" class="btn btn-lg btn-info" ng-disabled="!myForm.$valid"
+						ng-click="createClient()">Sign Up</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en" ng-app="superMod">
+<head>
+<meta charset="utf-8">
+<title>INSE-6260 PROJECT</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- <link rel="stylesheet"
+	href="bower_components/bootstrap/dist/css/bootstrap.css"> -->
+
+<!-- <script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script> -->
+<script src="bower_components/jquery/dist/jquery.js"></script>
+<link rel="stylesheet"
+	href="bower_components/jslib/bootstrap.min.css">
+<!-- <link rel="stylesheet"
+	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"> -->
+<script
+	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<link rel="stylesheet"
+	href="static/css/myStyle.css">
+
+<script src="bower_components/jslib/bootstrap.min.js"></script> 
+
+
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/angular-animate/angular-animate.js"></script>
+<script src="bower_components/angular-route/angular-route.js"></script>
+<script src="bower_components/angular/angular.min.js"></script>
+<script src="bower_components/angular-resource/angular-resource.js"></script>
+
+
+<script src="bower_components/jslib/angular-cookies.min.js"></script>
+<script
+	src="bower_components/bootstrap-ui/ui-bootstrap-tpls-1.2.5.min.js"></script>
+
+<!-- <script
+	src="https://cdn.jsdelivr.net/angularjs/1.5.0/angular-cookies.min.js"></script> -->
+<script src="app/app.js"></script>
+
+<!-- services -->
+<script src="app/services/loginService.js"></script>
+<script src="app/services/workerService.js"></script>
+<script src="app/services/taskService.js"></script>
+<script src="app/services/clientService.js"></script>
+<script src="app/services/categoryService.js"></script>
+
+
+<!-- load ngmessages -->
+<!-- <script
+	src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular-messages.js"></script> -->
+<!-- controllers -->
+<script src="app/controllers/mainController.js"></script>
+<script src="app/controllers/loginCtrl.js"></script>
+<script src="app/controllers/categoryCtrl.js"></script>
+<script src="app/controllers/taskCtrl.js"></script>
+<script src="app/controllers/workerCtrl.js"></script>
+<script src="app/controllers/clientCtrl.js"></script>
+<script src="app/controllers/adminDashboardCtrl.js"></script>
+<script src="app/controllers/clientDashboardCtrl.js"></script>
+<script src="app/controllers/workerDashboardCtrl.js"></script>
+
+<!-- directive -->
+<script src="app/directives/mainDirective.js"></script>
+<script src="app/directives/notificationDirective.js"></script>
+
+<!-- Large modal -->
+
+<!-- <div id="myModal" class="modal fade bs-example-modal-lg" tabindex="-1"
+	role="dialog" aria-labelledby="myLargeModalLabel">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<h1>Request Submitted Successfully</h1>
+		</div>
+	</div>
+</div> -->
+
+
+<style>
+/* input.ng-error {
+
+ background-color: pink; 
+ 
+}
+ input.ng-valid {
+    background-color: lightgreen;
+} */
+</style>
+</head>
+<body>
+	<!-- Navigation -->
+	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+		<div class="container">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse"
+					data-target="#bs-example-navbar-collapse-1">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#homePage"> <img
+					src="easyhelplogo100percent.gif" alt="">
+				</a>
+			</div>
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse"
+				id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav">
+
+					<!-- <li><a href="#homePage">Home</a></li> -->
+
+					<li><a href="#">About</a></li>
+					<li><a href="#">Services</a></li>
+					<li><a href="#">Contact</a></li>
+					<li><a href="#login">Login</a></li>
+					<li><a href="#logout">Logout</a></li>
+				</ul>
+			</div>
+			<!-- /.navbar-collapse -->
+		</div>
+		<!-- /.container -->
+	</nav>
+	<!-- <p>
+		<a href="#createTask">Create Task</a>
+	</p>
+	<p>
+		<a href="#login">Login</a>
+	</p>
+	<p>
+		<a href="#createWorker">Create worker</a>
+	</p>
+	<p>
+		<a href="#createClient">Create client</a>
+	</p>
+	<p>
+		<a href="#createCategory">Create Category</a>
+	</p>
+	<p>
+		<a href="#adminDashboard">Admin Dashboard</a>
+	</p>
+	<p>
+		<a href="#clientDashboard">Client Dashboard</a>
+	</p>
+	<p>
+		<a href="#workerDashboard">Worker Dashboard</a>
+	</p>
+	<a href="#recommendationForm">Recommendation Form</a>
+	</p>
+	</p>
+	<a href="#logout">Logout</a>
+	</p>
+	
+	</p>
+	<a href="#homePage">Logout</a>
+	</p> -->
+
+	<div ng-view></div>
+
+</body>
+</html>
